@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0hmeychwjr3"]
+
+[ext_resource type="Script" uid="uid://blvcbemnt7rc0" path="res://pause_menu.gd" id="1_hdmo1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdmo1"]
+font_size = 80
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdmo1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.078431375, 0.3529412, 0.5019608)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.5
+offset_top = 51.0
+offset_right = 154.5
+offset_bottom = 161.0
+grow_horizontal = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_hdmo1")
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = 351.0
+offset_right = 35.0
+offset_bottom = 382.0
+grow_horizontal = 2
+text = "Resume"
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]

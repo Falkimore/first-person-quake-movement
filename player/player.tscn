@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bjx8efaqrcmlj"]
+
+[ext_resource type="Script" uid="uid://cbcl1w5lm4xh8" path="res://player/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cisu37j0sqepa" path="res://player/components/camera_bobber.gd" id="2_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://ds0hmeychwjr3" path="res://pause_menu.tscn" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.25
+
+[node name="Player" type="CharacterBody3D" unique_id=1941719941]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=207675210]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="Head" type="Node3D" parent="." unique_id=1724504441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1342238828]
+
+[node name="CameraBobber" type="Node" parent="Head" unique_id=589481968 node_paths=PackedStringArray("player", "camera")]
+script = ExtResource("2_g1dw6")
+player = NodePath("../..")
+camera = NodePath("../Camera3D")
+metadata/_custom_type_script = "uid://cisu37j0sqepa"
+
+[node name="PauseMenu" parent="." unique_id=1350913913 instance=ExtResource("2_onrkg")]
