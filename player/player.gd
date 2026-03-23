@@ -49,8 +49,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
 		velocity.y = JUMP_FORCE
 	
-	
-	
 	var input_dir := get_input_dir()
 	var move_dir := transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
 	move_dir = move_dir.normalized()
@@ -62,22 +60,6 @@ func _physics_process(delta: float) -> void:
 		_ground_movement(delta, move_dir)
 	else:
 		_air_movement(delta, move_dir)
-	
-	#var target_vel := move_dir * MAX_SPEED
-	#
-	#var accel: float
-	#if not is_on_floor():
-		#if target_vel.length_squared() > 0.0:
-			#accel = AIR_ACCEL
-		#else:
-			#accel = 0.0
-	#elif velocity.length_squared() > 0.0 and target_vel.length_squared() > 0.0:
-		#if target_vel.dot(velocity) > 0:
-			#accel = GROUND_ACCEL
-		#else:
-			#accel = GROUND_ACCEL * 2
-	#else:
-		#accel = GROUND_ACCEL
 	
 	velocity.y = y_speed
 	
