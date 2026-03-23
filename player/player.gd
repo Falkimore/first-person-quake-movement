@@ -4,12 +4,12 @@ extends CharacterBody3D
 
 signal landed(last_velocity: Vector3)
 
-@export var MAX_SPEED := 4.0
-@export var GROUND_ACCEL := 24.0
-@export var GROUND_FRICTION := 5.0
-@export var AIR_ACCEL := 12.0
-@export var JUMP_FORCE := 5.0
-@export var CAM_SENSITIVITY := 0.01
+@export var max_speed := 4.0
+@export var ground_accel := 24.0
+@export var ground_friction := 5.0
+@export var air_accel := 6.0
+@export var jump_force := 5.0
+@export var cam_sensitivity := 0.01
 
 @onready var head: Node3D = $Head
 @onready var pause_menu: Control = $PauseMenu
@@ -26,8 +26,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			return
-		rotate_y(CAM_SENSITIVITY * -event.screen_relative.x)
-		head.rotate_x(CAM_SENSITIVITY * -event.screen_relative.y)
+		rotate_y(cam_sensitivity * -event.screen_relative.x)
+		head.rotate_x(cam_sensitivity * -event.screen_relative.y)
 		head.rotation_degrees.x = clamp(head.rotation_degrees.x, -80, 80)
 
 
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	velocity += get_gravity() * delta
 	
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
-		velocity.y = JUMP_FORCE
+		velocity.y = jump_force
 	
 	var input_dir := get_input_dir()
 	var move_dir := transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)
@@ -77,8 +77,8 @@ func _accelerate(delta: float, accel_dir: Vector3, accel_force: float) -> void:
 	var proj_vel := velocity.dot(accel_dir)
 	var accel_vel := delta * accel_force
 	
-	if proj_vel + accel_vel > MAX_SPEED:
-		accel_vel = MAX_SPEED - proj_vel
+	if proj_vel + accel_vel > max_speed:
+		accel_vel = max_speed - proj_vel
 	
 	velocity += accel_dir * accel_vel
 
@@ -87,11 +87,11 @@ func _ground_movement(delta: float, move_dir: Vector3) -> void:
 	var speed := velocity.length()
 	
 	if speed != 0.0:
-		var drop := speed * GROUND_FRICTION * delta
+		var drop := speed * ground_friction * delta
 		velocity *= maxf(speed - drop, 0.0) / speed
 	
-	_accelerate(delta, move_dir, GROUND_ACCEL)
+	_accelerate(delta, move_dir, ground_accel)
 
 
 func _air_movement(delta: float, move_dir: Vector3) -> void:
-	_accelerate(delta, move_dir, AIR_ACCEL)
+	_accelerate(delta, move_dir, air_accel)
