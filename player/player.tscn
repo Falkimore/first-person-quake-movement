@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cbcl1w5lm4xh8" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cisu37j0sqepa" path="res://player/components/camera_bobber.gd" id="2_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://ds0hmeychwjr3" path="res://pause_menu.tscn" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://c0cgdl2ignvlq" path="res://player/hud/player_hud.tscn" id="3_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 radius = 0.25
@@ -22,6 +23,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_g1dw6")
 player = NodePath("../..")
 camera = NodePath("../Camera3D")
+landing_impulse = 0.0
 metadata/_custom_type_script = "uid://cisu37j0sqepa"
 
+[node name="PlayerHUD" parent="." unique_id=836127833 node_paths=PackedStringArray("player") instance=ExtResource("3_yw30f")]
+player = NodePath("..")
+
 [node name="PauseMenu" parent="." unique_id=1350913913 instance=ExtResource("2_onrkg")]
+visible = false

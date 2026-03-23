@@ -27,7 +27,6 @@ func _strafing_effect(delta: float) -> void:
 
 
 func _landing_impact(last_velocity: Vector3) -> void:
-	print("hi")
 	camera.rotate_x(last_velocity.y * landing_impulse)
 
 

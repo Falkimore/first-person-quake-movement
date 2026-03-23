@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c0cgdl2ignvlq"]
+
+[ext_resource type="Script" uid="uid://damgnx2ldxjsi" path="res://player/hud/player_hud.gd" id="1_xe0d6"]
+
+[node name="PlayerHUD" type="Control" unique_id=836127833]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xe0d6")
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1846119581]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 39.0
+text = "hi"
