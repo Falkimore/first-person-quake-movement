@@ -83,6 +83,7 @@ func _accelerate(delta: float, accel_dir: Vector3, accel_force: float) -> void:
 	velocity += accel_dir * accel_vel
 
 
+# https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/bg_pmove.c#L240
 func _quake_accelerate(delta: float, wish_dir: Vector3, wish_speed: float, accel: float) -> void:
 	var current_speed := velocity.dot(wish_dir)
 	var add_speed := wish_speed - current_speed
