@@ -5,9 +5,9 @@ extends CharacterBody3D
 signal landed(last_velocity: Vector3)
 
 @export var max_speed := 4.0
-@export var ground_accel := 24.0
-@export var ground_friction := 5.0
-@export var air_accel := 6.0
+@export var ground_accel := 40.0
+@export var ground_friction := 6.0
+@export var air_accel := 4.0
 @export var jump_force := 5.0
 @export var cam_sensitivity := 0.01
 
@@ -83,6 +83,19 @@ func _accelerate(delta: float, accel_dir: Vector3, accel_force: float) -> void:
 	velocity += accel_dir * accel_vel
 
 
+func _quake_accelerate(delta: float, wish_dir: Vector3, wish_speed: float, accel: float) -> void:
+	var current_speed := velocity.dot(wish_dir)
+	var add_speed := wish_speed - current_speed
+	if add_speed <= 0.0:
+		return
+	
+	var accel_speed := accel * delta
+	if accel_speed > add_speed:
+		accel_speed = add_speed
+	
+	velocity += accel_speed * wish_dir
+
+
 func _ground_movement(delta: float, move_dir: Vector3) -> void:
 	var speed := velocity.length()
 	
@@ -90,8 +103,8 @@ func _ground_movement(delta: float, move_dir: Vector3) -> void:
 		var drop := speed * ground_friction * delta
 		velocity *= maxf(speed - drop, 0.0) / speed
 	
-	_accelerate(delta, move_dir, ground_accel)
+	_quake_accelerate(delta, move_dir, max_speed, ground_accel)
 
 
 func _air_movement(delta: float, move_dir: Vector3) -> void:
-	_accelerate(delta, move_dir, air_accel)
+	_quake_accelerate(delta, move_dir, max_speed, air_accel)

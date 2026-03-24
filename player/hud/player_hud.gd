@@ -11,5 +11,7 @@ func _process(_delta: float) -> void:
 
 func _get_debug_text() -> String:
 	var vel := player.velocity
+	var horiz_speed := sqrt(vel.x * vel.x + vel.z * vel.z)
 	
-	return "Speed: (%.2f, %.2f, %.2f)\n" % [vel.x, vel.y, vel.z]
+	return "Velocity: (%.2f, %.2f, %.2f)\n" % [vel.x, vel.y, vel.z] \
+			+ "Horizontal speed: %.2f / %.2f" % [horiz_speed, player.max_speed]
