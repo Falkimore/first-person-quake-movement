@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c0cgdl2ignvlq" path="res://player/hud/player_hud.tscn" id="3_yw30f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
-radius = 0.25
 height = 1.9000001
 
 [node name="Player" type="CharacterBody3D" unique_id=1941719941]
