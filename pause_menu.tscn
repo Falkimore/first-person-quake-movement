@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds0hmeychwjr3"]
+[gd_scene format=3 uid="uid://ds0hmeychwjr3"]
 
 [ext_resource type="Script" uid="uid://blvcbemnt7rc0" path="res://pause_menu.gd" id="1_hdmo1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdmo1"]
 font_size = 80
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" unique_id=39077575]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hdmo1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1052689317]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.078431375, 0.3529412, 0.5019608)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=561741241]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -37,7 +37,7 @@ grow_horizontal = 2
 text = "PAUSED"
 label_settings = SubResource("LabelSettings_hdmo1")
 
-[node name="ResumeButton" type="Button" parent="."]
+[node name="ResumeButton" type="Button" parent="." unique_id=235838445]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

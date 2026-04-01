@@ -5,7 +5,7 @@ extends Node
 @export var camera: Camera3D
 
 @export_group("Parameters")
-@export var strafe_rotation: float = 0.08
+@export var strafe_rotation: float = -0.08
 @export var landing_impulse: float = 0.003
 @export var damping_amount: float = 6.0
 
